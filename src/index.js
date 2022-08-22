@@ -2,6 +2,7 @@ const test = document.getElementById("test")
 const featuredCocktails = document.getElementById("featured-cocktails-menu")
 const form = document.getElementById("song-form")
 const featuredCocktailsContainer = document.getElementById("featured-container")
+const featuredCocktailClick = document.getElementById('featured-cocktail')
 
 fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail")
 .then(res => res.json())
@@ -10,23 +11,30 @@ fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail")
     let drinksArray = data.drinks // assigns a value to the data 
     let randomElement = drinksArray[Math.floor(Math.random() * drinksArray.length)] // grabs random drink
     let drinkName = document.createElement("h5") // creates an element for each drink's name
+    featuredCocktails.append(featuredCocktailClick) //add individual cocktail elements to the cocktails menu
+    
+    //add and append an individual cocktail div to the overall cocktails container
+    let featuredCocktailDiv = document.createElement("div") 
+    featuredCocktailsContainer.append(featuredCocktailDiv) 
 
-    featuredCocktails.append(featuredCocktailsContainer)
-
+    //add and append drink ids and names to the individual cocktail elements
     drinkName.setAttribute("id", "drink-name")
     drinkName.innerText = randomElement.strDrink // adds the name of a random drink from the data 
-    featuredCocktailsContainer.append(drinkName) // adds the drink name to the 'featured cocktails list'
+    featuredCocktailDiv.append(drinkName)// adds the drink name to the 'featured cocktails list'
 
+    //add and append drink images to the individual cocktail elements
     let drinkImage = document.createElement("img")
     drinkImage.setAttribute("id", "featured-drink-image")
     drinkImage.src = randomElement.strDrinkThumb
-    featuredCocktailsContainer.append(drinkImage)    
+    featuredCocktailDiv.append(drinkImage)
 
-    featuredCocktailsContainer.addEventListener("click", () => {
-      let id = randomElement.idDrink
+    //add event listener to each featured cocktail
+    featuredCocktailDiv.addEventListener("click", () => {
+      let id = randomElement.idDrink //get the ID of the random drink
       fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
       .then(res => res.json())
-      .then(data => console.log(data.drinks[0]))
+      .then(data => 
+        console.log(data.drinks[0].strInstructions))
     })
   } 
 })
