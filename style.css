@@ -1,0 +1,24 @@
+* {
+  font-family: sans-serif;
+}
+
+#featured-drink-image {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 30%
+}
+
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+#drink-name {
+  cursor: pointer;
+}
+
+#submit-button {
+  cursor: pointer;
+}
