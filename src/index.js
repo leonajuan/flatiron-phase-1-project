@@ -72,6 +72,10 @@ function displayDrinkDetails(id) { // will display the featured drink's ingredie
   })
 }
 
+function dropdownToggle() {
+  document.getElementById("dropdownOptions").classList.toggle("show")
+}
+
 // TO-DO
   // put fetch in a function so it can be called in the "click" event and "submit" event
   // organize logic into individual functions

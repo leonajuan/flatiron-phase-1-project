@@ -31,3 +31,9 @@
 #submit-button {
   cursor: pointer;
 }
+
+.mood-dropdown {
+  float: right;
+  position: relative;
+}
+.mood-dropdown a:hover {background-color: lightpink;}
