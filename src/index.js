@@ -3,6 +3,7 @@ const featuredCocktails = document.getElementById("featured-cocktails-menu")
 const form = document.getElementById("song-form")
 const featuredCocktailsContainer = document.getElementById("featured-container")
 const featuredCocktailClick = document.getElementById('featured-cocktail')
+const formDrinkContainer = document.querySelector(".form-drink")
 
 fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail")
 .then(res => res.json())
@@ -15,6 +16,7 @@ fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail")
     
     //add and append an individual cocktail div to the overall cocktails container
     let featuredCocktailDiv = document.createElement("div") 
+    featuredCocktailDiv.setAttribute("id", "featured-cocktails-div")
     featuredCocktailsContainer.append(featuredCocktailDiv) 
 
     //add and append drink ids and names to the individual cocktail elements
@@ -68,7 +70,13 @@ fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail")
 
 form.addEventListener("submit", (e) => {
   e.preventDefault()
+  console.log(formDrinkContainer)
 })
+
+// TO-DO
+  // put fetch in a function so it can be called in the "click" event and "submit" event
+  // organize logic into individual functions
+  // add logic for displaying cocktail after submitting song/artist 
 
 
 // all route 
