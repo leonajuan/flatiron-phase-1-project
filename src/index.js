@@ -3,6 +3,7 @@ const featuredCocktails = document.getElementById("featured-cocktails-menu")
 const form = document.getElementById("song-form")
 const featuredCocktailsContainer = document.getElementById("featured-container")
 const featuredCocktailClick = document.getElementById('featured-cocktail')
+const formDrinkContainer = document.querySelector(".form-drink")
 
 fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail")
 .then(res => res.json())
@@ -15,6 +16,7 @@ fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail")
     
     //add and append an individual cocktail div to the overall cocktails container
     let featuredCocktailDiv = document.createElement("div") 
+    featuredCocktailDiv.setAttribute("id", "featured-cocktails-div")
     featuredCocktailsContainer.append(featuredCocktailDiv) 
 
     //add and append drink ids and names to the individual cocktail elements
@@ -33,15 +35,48 @@ fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail")
       let id = randomElement.idDrink //get the ID of the random drink
       fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
       .then(res => res.json())
-      .then(data => 
-        console.log(data.drinks[0].strInstructions))
+      .then(data => {
+        let drinkRecipe = document.createElement("p")
+
+        
+        if(data.drinks[0].strIngredient3 == null){
+          drinkRecipe.innerText = `You will need ${data.drinks[0].strIngredient1} and ${data.drinks[0].strIngredient2}. ${data.drinks[0].strInstructions}` 
+          featuredCocktailDiv.append(drinkRecipe)
+        } else if(data.drinks[0].strIngredient4 == null){
+          drinkRecipe.innerText = `You will need ${data.drinks[0].strIngredient1}, ${data.drinks[0].strIngredient2} and ${data.drinks[0].strIngredient3}. ${data.drinks[0].strInstructions}` 
+          featuredCocktailDiv.append(drinkRecipe)
+        } else {
+          drinkRecipe.innerText = `You will need ${data.drinks[0].strIngredient1}, ${data.drinks[0].strIngredient2}, ${data.drinks[0].strIngredient3} and ${data.drinks[0].strIngredient4}. ${data.drinks[0].strInstructions}` 
+          featuredCocktailDiv.append(drinkRecipe)
+        }
+        // switch(expression) {
+        //   case (data.drinks[0].strIngredient3 == null):
+        //     drinkRecipe.innerText = `You will need ${data.drinks[0].strIngredient1} and ${data.drinks[0].strIngredient2}. ${data.drinks[0].strInstructions}` 
+        //     featuredCocktailDiv.append(drinkRecipe)
+        //     break;
+        //   case (data.drinks[0].strIngredient4 == null):
+        //     drinkRecipe.innerText = `You will need ${data.drinks[0].strIngredient1}, ${data.drinks[0].strIngredient2} and ${data.drinks[0].strIngredient3}. ${data.drinks[0].strInstructions}` 
+        //     featuredCocktailDiv.append(drinkRecipe)
+        //     break;
+        //   default:
+        //     drinkRecipe.innerText = `You will need ${data.drinks[0].strIngredient1}, ${data.drinks[0].strIngredient2}, ${data.drinks[0].strIngredient3} and ${data.drinks[0].strIngredient4}. ${data.drinks[0].strInstructions}` 
+        //     featuredCocktailDiv.append(drinkRecipe)
+        // }
+      })
+        // console.log(data.drinks[0].strInstructions))
     })
   } 
 })
 
 form.addEventListener("submit", (e) => {
   e.preventDefault()
+  console.log(formDrinkContainer)
 })
+
+// TO-DO
+  // put fetch in a function so it can be called in the "click" event and "submit" event
+  // organize logic into individual functions
+  // add logic for displaying cocktail after submitting song/artist 
 
 
 // all route 
