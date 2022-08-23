@@ -33,8 +33,35 @@ fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail")
       let id = randomElement.idDrink //get the ID of the random drink
       fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
       .then(res => res.json())
-      .then(data => 
-        console.log(data.drinks[0].strInstructions))
+      .then(data => {
+        let drinkRecipe = document.createElement("p")
+
+        
+        if(data.drinks[0].strIngredient3 == null){
+          drinkRecipe.innerText = `You will need ${data.drinks[0].strIngredient1} and ${data.drinks[0].strIngredient2}. ${data.drinks[0].strInstructions}` 
+          featuredCocktailDiv.append(drinkRecipe)
+        } else if(data.drinks[0].strIngredient4 == null){
+          drinkRecipe.innerText = `You will need ${data.drinks[0].strIngredient1}, ${data.drinks[0].strIngredient2} and ${data.drinks[0].strIngredient3}. ${data.drinks[0].strInstructions}` 
+          featuredCocktailDiv.append(drinkRecipe)
+        } else {
+          drinkRecipe.innerText = `You will need ${data.drinks[0].strIngredient1}, ${data.drinks[0].strIngredient2}, ${data.drinks[0].strIngredient3} and ${data.drinks[0].strIngredient4}. ${data.drinks[0].strInstructions}` 
+          featuredCocktailDiv.append(drinkRecipe)
+        }
+        // switch(expression) {
+        //   case (data.drinks[0].strIngredient3 == null):
+        //     drinkRecipe.innerText = `You will need ${data.drinks[0].strIngredient1} and ${data.drinks[0].strIngredient2}. ${data.drinks[0].strInstructions}` 
+        //     featuredCocktailDiv.append(drinkRecipe)
+        //     break;
+        //   case (data.drinks[0].strIngredient4 == null):
+        //     drinkRecipe.innerText = `You will need ${data.drinks[0].strIngredient1}, ${data.drinks[0].strIngredient2} and ${data.drinks[0].strIngredient3}. ${data.drinks[0].strInstructions}` 
+        //     featuredCocktailDiv.append(drinkRecipe)
+        //     break;
+        //   default:
+        //     drinkRecipe.innerText = `You will need ${data.drinks[0].strIngredient1}, ${data.drinks[0].strIngredient2}, ${data.drinks[0].strIngredient3} and ${data.drinks[0].strIngredient4}. ${data.drinks[0].strInstructions}` 
+        //     featuredCocktailDiv.append(drinkRecipe)
+        // }
+      })
+        // console.log(data.drinks[0].strInstructions))
     })
   } 
 })
