@@ -11,7 +11,7 @@
 }
 
 #form-drink-image {
-  width: 50%;
+  width: 40%;
   display: block;
   margin: auto;
 }
@@ -19,6 +19,13 @@
 #featured-container {
   display: flex;
   flex-direction: row;
+}
+
+#individual-featured-cocktail:hover {
+  position: relative;
+  top: -14px;
+  left: 6px;
+  cursor: pointer;
 }
 
 #individual-featured-cocktail, #form-drink-card {

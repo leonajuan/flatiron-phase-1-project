@@ -68,7 +68,6 @@ function displayDrinks() {
       individualFeaturedCocktail.addEventListener("click", () => { // when a featured cocktail is clicked...
         displayDrinkDetails(randomElement.idDrink) // the displayDrinkDetails function is called which will show the drink ingredients + recipe
       })
- 
     } 
   })
 }
