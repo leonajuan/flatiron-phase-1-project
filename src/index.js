@@ -9,8 +9,20 @@ const formDrinkCard = document.querySelector("#form-drink-card")
 const formDrinkName = document.getElementById("form-drink-name")
 const formDrinkImage = document.getElementById("form-drink-image")
 const formDrinkInstructions = document.getElementById("form-drink-instructions")
+const toggle = document.getElementById("toggle")
+const body = document.body
 
 document.addEventListener("DOMContentLoaded", displayDrinks()) // calling displayDrinks function once DOM has loaded - will display five random drinks
+
+toggle.addEventListener('input', (e) => {
+  const isChecked = e.target.checked
+
+  if(isChecked) {
+    body.classList.add('dark-theme')
+  } else {
+    body.classList.remove('dark-theme')
+  }
+})
 
 form.addEventListener("submit", (e) => { // on submit...
   e.preventDefault()
