@@ -93,7 +93,7 @@ function displayDrinkDetails(id) { // will display the featured drink's ingredie
 }
 
 function dropdownToggle() {
-  document.getElementById("dropdownOptions").classList.toggle("show")
+  document.getElementById("dropdown-options").classList.toggle("show")
 }
 
 // TO-DO
