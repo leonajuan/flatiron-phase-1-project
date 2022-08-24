@@ -9,20 +9,33 @@ const formDrinkCard = document.querySelector("#form-drink-card")
 const formDrinkName = document.getElementById("form-drink-name")
 const formDrinkImage = document.getElementById("form-drink-image")
 const formDrinkInstructions = document.getElementById("form-drink-instructions")
+const toggle = document.getElementById("toggle")
+const body = document.body
 
 document.addEventListener("DOMContentLoaded", displayDrinks()) // calling displayDrinks function once DOM has loaded - will display five random drinks
 
-form.addEventListener("submit", (e) => { // form needs work - we will probably need to do another fetch to the cocktail database - easiest way will be to pick a letter and grab that API?
+toggle.addEventListener('input', (e) => {
+  const isChecked = e.target.checked
+
+  if(isChecked) {
+    body.classList.add('dark-theme')
+  } else {
+    body.classList.remove('dark-theme')
+  }
+})
+
+form.addEventListener("submit", (e) => { // on submit...
   e.preventDefault()
-  fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php")
+  fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php") // fetching API that provides one random drink
   .then(res => res.json())
   .then(data => {
-    let formDrink = data.drinks[0]
+    let formDrink = data.drinks[0] // assigning a variable to the one drink
 
-    formDrinkName.innerText = `The ${formInput.value} Cocktail`
+    formDrinkName.innerText = `The ${formInput.value} Cocktail` // taking the user input and making that the cocktail name
 
-    formDrinkImage.src = formDrink.strDrinkThumb
+    formDrinkImage.src = formDrink.strDrinkThumb // setting image source
 
+    // if else based on how many ingredients are listed in the API
     if(data.drinks[0].strIngredient3 == null){
       formDrinkInstructions.innerText = `You will need ${data.drinks[0].strIngredient1} and ${data.drinks[0].strIngredient2}. ${data.drinks[0].strInstructions}` 
     } else if(data.drinks[0].strIngredient4 == null){
@@ -67,7 +80,6 @@ function displayDrinks() {
       individualFeaturedCocktail.addEventListener("click", () => { // when a featured cocktail is clicked...
         displayDrinkDetails(randomElement.idDrink) // the displayDrinkDetails function is called which will show the drink ingredients + recipe
       })
- 
     } 
   })
 }
