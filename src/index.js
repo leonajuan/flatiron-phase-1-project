@@ -4,13 +4,33 @@ const form = document.getElementById("song-form")
 const featuredCocktailsContainer = document.getElementById("featured-container")
 const featuredCocktailNav = document.getElementById('featured-cocktail-nav')
 const formDrinkContainer = document.querySelector(".form-drink")
+const formInput = document.getElementById("form-input")
+const formDrinkCard = document.querySelector("#form-drink-card")
+const formDrinkName = document.getElementById("form-drink-name")
+const formDrinkImage = document.getElementById("form-drink-image")
+const formDrinkInstructions = document.getElementById("form-drink-instructions")
 
 document.addEventListener("DOMContentLoaded", displayDrinks()) // calling displayDrinks function once DOM has loaded - will display five random drinks
 
 form.addEventListener("submit", (e) => { // form needs work - we will probably need to do another fetch to the cocktail database - easiest way will be to pick a letter and grab that API?
   e.preventDefault()
-  // displayDrinks()
-  // displayDrinkDetails()
+  fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php")
+  .then(res => res.json())
+  .then(data => {
+    let formDrink = data.drinks[0]
+
+    formDrinkName.innerText = `The ${formInput.value} Cocktail`
+
+    formDrinkImage.src = formDrink.strDrinkThumb
+
+    if(data.drinks[0].strIngredient3 == null){
+      formDrinkInstructions.innerText = `You will need ${data.drinks[0].strIngredient1} and ${data.drinks[0].strIngredient2}. ${data.drinks[0].strInstructions}` 
+    } else if(data.drinks[0].strIngredient4 == null){
+      formDrinkInstructions.innerText = `You will need ${data.drinks[0].strIngredient1}, ${data.drinks[0].strIngredient2} and ${data.drinks[0].strIngredient3}. ${data.drinks[0].strInstructions}` 
+    } else {
+      formDrinkInstructions.innerText = `You will need ${data.drinks[0].strIngredient1}, ${data.drinks[0].strIngredient2}, ${data.drinks[0].strIngredient3} and ${data.drinks[0].strIngredient4}. ${data.drinks[0].strInstructions}` 
+    }
+  })
 })
 
 function displayDrinks() {
@@ -73,7 +93,7 @@ function displayDrinkDetails(id) { // will display the featured drink's ingredie
 }
 
 function dropdownToggle() {
-  document.getElementById("dropdownOptions").classList.toggle("show")
+  document.getElementById("dropdown-options").classList.toggle("show")
 }
 
 // TO-DO
