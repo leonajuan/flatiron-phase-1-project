@@ -1,5 +1,18 @@
 * {
-  font-family: sans-serif;
+  font-family: 'Francois One', sans-serif;
+}
+
+#site-title {
+  text-align: center;
+  background-color: rgb(255, 208, 241);
+  font-size: 65px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 10px;
+}
+
+#featured-cocktails-menu {
+  text-align: center;
 }
 
 body {
@@ -35,6 +48,7 @@ body.dark-theme {
   background-color: #ff77c9;
   border-radius: 50%;
   content: 'BLACK OUT';
+  font-size: 14px;
   cursor: pointer;
   display: inline-block;
   position: absolute;
@@ -104,8 +118,12 @@ body.dark-theme {
   background: transparent;
 }
 
+#form-drink-name {
+  font-size: 22px;
+}
+
 #form-drink-image {
-  width: 50%;
+  width: 35%;
   display: block;
   margin: auto;
 }
@@ -127,6 +145,16 @@ body.dark-theme {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   margin: 0px 10px 0px 10px;
+}
+
+#form-drink-card {
+  width: 70%;
+}
+
+#form-drink-instructions {
+  font-size: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 #drink-name {
@@ -167,7 +195,8 @@ body.dark-theme {
 .mood-dropdown {
   position: relative;
   display: inline-block;
-  left: 20px;
+  top: -325px;
+  left: 1200px;
 }
 
 .dropdown-content{
