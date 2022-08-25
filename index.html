@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Francois+One&family=Luckiest+Guy&family=Rubik+Dirt&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,10 +32,16 @@
 
   <p id="details"></p>
   
+  <div class="full-drink-menu">
+    <ol id="all-drink-items"></ol> 
+  </div>
+
   <form id="song-form">
     <h2>▶️ I'M LISTENING TO</h2>
-    <label for="name">Song or Artist</label>
-    <input type="text" name="name" id="form-input" placeholder="Listening to..." />
+    <div class="user-box">
+      <label for="name">Song or Artist</label>
+      <input type="text" name="name" id="form-input" placeholder="Listening to..." />
+    </div>
     <button id="submit-button">WHAT SHOULD I DRINK?</button>
   </form>
 

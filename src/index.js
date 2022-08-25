@@ -1,8 +1,7 @@
-const test = document.getElementById("test")
 const featuredCocktails = document.getElementById("featured-cocktails-menu")
 const form = document.getElementById("song-form")
 const featuredCocktailsContainer = document.getElementById("featured-container")
-const featuredCocktailNav = document.getElementById('featured-cocktail-nav')
+const featuredCocktailNav = document.getElementById("featured-cocktail-nav")
 const formDrinkContainer = document.querySelector(".form-drink")
 const formInput = document.getElementById("form-input")
 const formDrinkCard = document.querySelector("#form-drink-card")
@@ -11,49 +10,54 @@ const formDrinkImage = document.getElementById("form-drink-image")
 const formDrinkInstructions = document.getElementById("form-drink-instructions")
 const toggle = document.getElementById("toggle")
 const body = document.body
+const moods = document.getElementById("dropdown")
+let moodSelection = document.querySelectorAll("a")
+let moodSelector = document.querySelector(".dropdown-content")
+const fullMenu = document.querySelector(".full-drink-menu")
+const allDrinks = document.getElementById("all-drink-items")
 
 document.addEventListener("DOMContentLoaded", displayDrinks()) // calling displayDrinks function once DOM has loaded - will display five random drinks
 
 // Blackout button
-toggle.addEventListener('input', (e) => {
+toggle.addEventListener("input", (e) => {
   const isChecked = e.target.checked
 
   if(isChecked) {
-    body.classList.add('dark-theme')
+    body.classList.add("dark-theme")
   } else {
-    body.classList.remove('dark-theme')
+    body.classList.remove("dark-theme")
   }
 })
 
+// event listener attached to the form
 form.addEventListener("submit", (e) => { // on submit...
   e.preventDefault()
-  fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php") // fetching API that provides one random drink
-  .then(res => res.json())
-  .then(data => {
-    let formDrink = data.drinks[0] // assigning a variable to the one drink
-
-    formDrinkName.innerText = `The ${formInput.value} Cocktail` // taking the user input and making that the cocktail name
-
-    formDrinkImage.src = formDrink.strDrinkThumb // setting image source
-
-    // if else based on how many ingredients are listed in the API
-    if(data.drinks[0].strIngredient3 == null){
-      formDrinkInstructions.innerText = `You will need ${data.drinks[0].strIngredient1} and ${data.drinks[0].strIngredient2}. ${data.drinks[0].strInstructions}` 
-    } else if(data.drinks[0].strIngredient4 == null){
-      formDrinkInstructions.innerText = `You will need ${data.drinks[0].strIngredient1}, ${data.drinks[0].strIngredient2} and ${data.drinks[0].strIngredient3}. ${data.drinks[0].strInstructions}` 
-    } else {
-      formDrinkInstructions.innerText = `You will need ${data.drinks[0].strIngredient1}, ${data.drinks[0].strIngredient2}, ${data.drinks[0].strIngredient3} and ${data.drinks[0].strIngredient4}. ${data.drinks[0].strInstructions}` 
-    }
+  pourMyDrink("form")
+  formDrinkName.innerText = `The ${formInput.value} Cocktail` // taking the user input and making that the cocktail name
   })
+
+// event listener attached to the moods dropdown
+moodSelector.addEventListener("click", (e) => {
+  pourMyDrink()
 })
+
+// pick a mood dropdown
+function moodFunction() {
+  document.getElementById("dropdown").classList.toggle("show")
+}
 
 function displayDrinks() {
   fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail")
   .then(res => res.json())
   .then(data => {
-    for(let i = 0; i < 5; i++){ //grab 5 drinks
-      let drinksArray = data.drinks // assigns a value to the data
-      let randomElement = drinksArray[Math.floor(Math.random() * drinksArray.length)] // grabs random drink
+    let drinksArray = data.drinks
+    const shuffledArray = drinksArray.sort(()=>0.5 - Math.random())
+    let randomElement0 = shuffledArray.slice(0,5)
+    randomElement0.forEach(randomElement => { //grab 5 drinks
+
+    // for(let i = 0; i < 5; i++){ //grab 5 drinks
+    //   let drinksArray = data.drinks // assigns a value to the data
+    //   let randomElement = drinksArray[Math.floor(Math.random() * drinksArray.length)] // grabs random drink
       let drinkName = document.createElement("h5") // creates an element for each drink's name
       featuredCocktails.append(featuredCocktailNav) //add individual cocktail elements to the cocktails menu
 
@@ -81,8 +85,9 @@ function displayDrinks() {
       individualFeaturedCocktail.addEventListener("click", () => { // when a featured cocktail is clicked...
         displayDrinkDetails(randomElement.idDrink) // the displayDrinkDetails function is called which will show the drink ingredients + recipe
       })
-    } 
+    // } 
   })
+})
 }
 
 function displayDrinkDetails(id) { // will display the featured drink's ingredients + recipe
@@ -102,25 +107,19 @@ function displayDrinkDetails(id) { // will display the featured drink's ingredie
       drinkRecipe.innerText = `You will need ${data.drinks[0].strIngredient1}, ${data.drinks[0].strIngredient2}, ${data.drinks[0].strIngredient3} and ${data.drinks[0].strIngredient4}. ${data.drinks[0].strInstructions}` 
       // individualFeaturedCocktail.append(drinkRecipe)
     }
-    
   })
 }
 
-//Pick A Mood Dropdown 
-function moodFunction() {
-  document.getElementById("dropdown").classList.toggle("show");
-}
-let moods = document.getElementById("dropdown")
-moods.addEventListener("click", (e) => { // on click...
-  e.preventDefault()
+function pourMyDrink(form) {
   fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php") // fetching API that provides one random drink
   .then(res => res.json())
   .then(data => {
-    let moodDrink = data.drinks[0] // assigning a variable to the one drink
-    formDrinkName.innerText = `The ${data.drinks[0].strDrink} Cocktail` // taking the user input and making that the cocktail name
-
-    formDrinkImage.src = moodDrink.strDrinkThumb // setting image source
-
+    // function to populate the form with drink details and instructions
+    let formDrink = data.drinks[0] // assigning a variable to the one drink
+    if(!form) {
+      formDrinkName.innerText = `Cheers! Have ${data.drinks[0].strDrink}:`
+    }
+    formDrinkImage.src = formDrink.strDrinkThumb // setting image source
     // if else based on how many ingredients are listed in the API
     if(data.drinks[0].strIngredient3 == null){
       formDrinkInstructions.innerText = `You will need ${data.drinks[0].strIngredient1} and ${data.drinks[0].strIngredient2}. ${data.drinks[0].strInstructions}` 
@@ -129,22 +128,10 @@ moods.addEventListener("click", (e) => { // on click...
     } else {
       formDrinkInstructions.innerText = `You will need ${data.drinks[0].strIngredient1}, ${data.drinks[0].strIngredient2}, ${data.drinks[0].strIngredient3} and ${data.drinks[0].strIngredient4}. ${data.drinks[0].strInstructions}` 
     }
-  })
 })
-  
-  // TO-DO
-  // put fetch in a function so it can be called in the "click" event and "submit" event
-  // organize logic into individual functions
-  // add logic for displaying cocktail after submitting song/artist 
+}
 
-
-// all route 
-// https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail
-
-
-// get by id route 
-// https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=15395
-
-
-//for form 
-// https://www.thecocktaildb.com/api/json/v1/1/search.php?s=mojito
+//Pick A Mood Dropdown 
+function moodFunction() {
+  document.getElementById("dropdown").classList.toggle("show");
+}

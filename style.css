@@ -1,5 +1,18 @@
 * {
-  font-family: sans-serif;
+  font-family: 'Francois One', sans-serif;
+}
+
+#site-title {
+  text-align: center;
+  background-color: rgb(255, 208, 241);
+  font-size: 65px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 10px;
+}
+
+#featured-cocktails-menu {
+  text-align: center;
 }
 
 body {
@@ -14,7 +27,6 @@ body.dark-theme {
   background-color: #070110;
   color: white;
 }
-
 
 .toggle input[type='checkbox'] {
   display:none;
@@ -36,6 +48,7 @@ body.dark-theme {
   background-color: #ff77c9;
   border-radius: 50%;
   content: 'BLACK OUT';
+  font-size: 14px;
   cursor: pointer;
   display: inline-block;
   position: absolute;
@@ -47,12 +60,12 @@ body.dark-theme {
 }
 
 .toggle input[type='checkbox']:checked ~ label {
-  background-color: #00a0fc;
-  border-color: #006dc9;
+  background-color: #ff77c9;
+  border-color: white;
 }
 
 .toggle input[type='checkbox']:checked ~ label::after {
-  background-color: #0054b0;
+  background-color: rgb(255,27,187);
   transform: translateX(50px);
 }
 
@@ -60,12 +73,57 @@ body.dark-theme {
   display: block;
   margin-right: auto;
   margin-left: auto;
-  margin-bottom: 20px;
-  width: 60%
+  margin-bottom: 10px;
+  width: 80%
+}
+
+#song-form {
+  /* position: absolute; */
+  /* top: 50%; */
+  /* left: 50%; */
+  width: 400px;
+  padding: 30px;
+  /* transform: translate(-150px, 100px); */
+  background: rgb(255, 208, 241);
+  box-sizing: border-box;
+  box-shadow: 0 10px 15px black;
+  border: solid rgb(255,27,187);
+  border-radius: 10px;
+}
+
+#song-form h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+#song-form label {
+  color: #fff;
+}
+
+#song-form .user-box {
+  position: relative;
+}
+
+#form-input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+#form-drink-name {
+  font-size: 22px;
 }
 
 #form-drink-image {
-  width: 40%;
+  width: 35%;
   display: block;
   margin: auto;
 }
@@ -89,14 +147,38 @@ body.dark-theme {
   margin: 0px 10px 0px 10px;
 }
 
+#form-drink-card {
+  width: 70%;
+}
+
+#form-drink-instructions {
+  font-size: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 #drink-name {
   font-size: 20px;
   text-align: center;
+  padding: 0px;
   cursor: pointer;
 }
 
 #submit-button {
   cursor: pointer;
+  display: inline-block;
+  background-color: rgb(255,27,187);
+  color: white;
+  font-size: 15px;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+  box-shadow: 0 2px 25px rgb(255,27,187);
 }
 
 .dropdownButton {
@@ -113,6 +195,8 @@ body.dark-theme {
 .mood-dropdown {
   position: relative;
   display: inline-block;
+  top: -325px;
+  left: 1200px;
 }
 
 .dropdown-content{
