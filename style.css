@@ -99,8 +99,43 @@ body.dark-theme {
   cursor: pointer;
 }
 
-.mood-dropdown {
-  float: right;
+.dropdownButton {
   position: relative;
+  background-color: rgb(255,27,187);
+  cursor: pointer;
+  width: 250px;
 }
-.mood-dropdown a:hover {background-color: lightpink;}
+
+.dropdownButton:hover, .dropdownButton:focus {
+  background-color: rgb(251, 58, 193);
+}
+
+.mood-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content{
+  display: none;
+  position: absolute;
+  width: 250px;
+  overflow: auto
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  cursor: pointer;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-style: double;
+  text-align: center;
+}
+
+.dropdown-content a:hover{
+  background-color: rgb(255, 208, 241);
+}
+
+.show {display:block;}

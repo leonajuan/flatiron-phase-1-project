@@ -14,6 +14,7 @@ const body = document.body
 
 document.addEventListener("DOMContentLoaded", displayDrinks()) // calling displayDrinks function once DOM has loaded - will display five random drinks
 
+// Blackout button
 toggle.addEventListener('input', (e) => {
   const isChecked = e.target.checked
 
@@ -101,14 +102,37 @@ function displayDrinkDetails(id) { // will display the featured drink's ingredie
       drinkRecipe.innerText = `You will need ${data.drinks[0].strIngredient1}, ${data.drinks[0].strIngredient2}, ${data.drinks[0].strIngredient3} and ${data.drinks[0].strIngredient4}. ${data.drinks[0].strInstructions}` 
       // individualFeaturedCocktail.append(drinkRecipe)
     }
+    
   })
 }
 
-function dropdownToggle() {
-  document.getElementById("dropdown-options").classList.toggle("show")
+//Pick A Mood Dropdown 
+function moodFunction() {
+  document.getElementById("dropdown").classList.toggle("show");
 }
+let moods = document.getElementById("dropdown")
+moods.addEventListener("click", (e) => { // on click...
+  e.preventDefault()
+  fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php") // fetching API that provides one random drink
+  .then(res => res.json())
+  .then(data => {
+    let moodDrink = data.drinks[0] // assigning a variable to the one drink
+    formDrinkName.innerText = `The ${data.drinks[0].strDrink} Cocktail` // taking the user input and making that the cocktail name
 
-// TO-DO
+    formDrinkImage.src = moodDrink.strDrinkThumb // setting image source
+
+    // if else based on how many ingredients are listed in the API
+    if(data.drinks[0].strIngredient3 == null){
+      formDrinkInstructions.innerText = `You will need ${data.drinks[0].strIngredient1} and ${data.drinks[0].strIngredient2}. ${data.drinks[0].strInstructions}` 
+    } else if(data.drinks[0].strIngredient4 == null){
+      formDrinkInstructions.innerText = `You will need ${data.drinks[0].strIngredient1}, ${data.drinks[0].strIngredient2} and ${data.drinks[0].strIngredient3}. ${data.drinks[0].strInstructions}` 
+    } else {
+      formDrinkInstructions.innerText = `You will need ${data.drinks[0].strIngredient1}, ${data.drinks[0].strIngredient2}, ${data.drinks[0].strIngredient3} and ${data.drinks[0].strIngredient4}. ${data.drinks[0].strInstructions}` 
+    }
+  })
+})
+  
+  // TO-DO
   // put fetch in a function so it can be called in the "click" event and "submit" event
   // organize logic into individual functions
   // add logic for displaying cocktail after submitting song/artist 
