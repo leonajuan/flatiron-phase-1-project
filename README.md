@@ -1,3 +1,6 @@
+# _SHOTIFY_
+<hr>
+
 # PHASE 1 GROUP PROJECT
 
 ## Group Members: LEONA, RAFIA, CHO
@@ -13,17 +16,12 @@
 ## Event Listeners
 
 ### “Submit” Event Listener- This form submits an artist/song and generates a drink recipe
+### “Input” Event Listener- User can choose Night party cocktail mode/ Day brunch cocktail mode
+### “Mouseover” Event Listener - enlarge/change color of the cocktail options
 
 ### "Click" Event Listener
-
-#### - User can choose Night party cocktail mode/ Day brunch cocktail mode
-
 #### - Pick a mood
-
 #### - Select a choice of your cocktail
-
-### "Mouseover" Event Listener - enlarge/change color of the cocktail options
-
 ## Array iteration
 
 ### (.forEach) is used for the Featured Cocktails at the top of the page
@@ -34,14 +32,16 @@
 
 https://www.thecocktaildb.com/api.php
 
-This API is used to generate cocktail recipes
+### This API is used to generate cocktail recipes
 
 <hr>
 
 ## Usage:
 
-Javascript, HTML, CSS
+### Javascript, HTML, CSS
 
 <hr>
 
-### Challenges/Features we hope to implement in the future: TBD
+## Challenges Faced/ Future Features:
+### Working on different branches as a group on Github was one of the challenges we faced (Git merge, push, pull from/to main branch).
+### Streachable feature we can practice in the future is to embed Spotify player on the page, so that users instantly find and listen to their music on the website.

@@ -13,6 +13,8 @@ const body = document.body
 const moods = document.getElementById("dropdown")
 let moodSelection = document.querySelectorAll("a")
 let moodSelector = document.querySelector(".dropdown-content")
+const fullMenu = document.querySelector(".full-drink-menu")
+const allDrinks = document.getElementById("all-drink-items")
 
 document.addEventListener("DOMContentLoaded", displayDrinks()) // calling displayDrinks function once DOM has loaded - will display five random drinks
 
@@ -48,9 +50,14 @@ function displayDrinks() {
   fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail")
   .then(res => res.json())
   .then(data => {
-    for(let i = 0; i < 5; i++){ //grab 5 drinks
-      let drinksArray = data.drinks // assigns a value to the data
-      let randomElement = drinksArray[Math.floor(Math.random() * drinksArray.length)] // grabs random drink
+    let drinksArray = data.drinks
+    const shuffledArray = drinksArray.sort(()=>0.5 - Math.random())
+    let randomElement0 = shuffledArray.slice(0,5)
+    randomElement0.forEach(randomElement => { //grab 5 drinks
+
+    // for(let i = 0; i < 5; i++){ //grab 5 drinks
+    //   let drinksArray = data.drinks // assigns a value to the data
+    //   let randomElement = drinksArray[Math.floor(Math.random() * drinksArray.length)] // grabs random drink
       let drinkName = document.createElement("h5") // creates an element for each drink's name
       featuredCocktails.append(featuredCocktailNav) //add individual cocktail elements to the cocktails menu
 
@@ -78,8 +85,9 @@ function displayDrinks() {
       individualFeaturedCocktail.addEventListener("click", () => { // when a featured cocktail is clicked...
         displayDrinkDetails(randomElement.idDrink) // the displayDrinkDetails function is called which will show the drink ingredients + recipe
       })
-    } 
+    // } 
   })
+})
 }
 
 function displayDrinkDetails(id) { // will display the featured drink's ingredients + recipe
@@ -127,18 +135,3 @@ function pourMyDrink(form) {
 function moodFunction() {
   document.getElementById("dropdown").classList.toggle("show");
 }
-  
-  // TO-DO
-  // organize logic into individual functions
-
-
-// all route 
-// https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail
-
-
-// get by id route 
-// https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=15395
-
-
-//for form 
-// https://www.thecocktaildb.com/api/json/v1/1/search.php?s=mojito
