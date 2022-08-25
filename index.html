@@ -9,13 +9,19 @@
 </head>
 
 <body>
+
+  <div class="toggle">
+    <input type="checkbox" id="toggle" />
+    <label for="toggle"></label>
+  </div>
+
   <header>
-    <h1 id="site-title">PLACEHOLDER SITE TITLE</h1>
+    <h1 id="site-title">SHOTIFY</h1>
   </header>
 
 
   <div class="cocktails-card">
-    <h1 id="featured-cocktails-menu">Featured Cocktails</h1>
+    <h2 id="featured-cocktails-menu">If you're just thirsty...</h2>
     <div class="container" id="featured-container">
     <div id="featured-cocktail-nav"></div>
     </div>
@@ -24,24 +30,30 @@
   <p id="details"></p>
   
   <form id="song-form">
-    <h2>What are you listening to?</h2>
+    <h2>▶️ I'M LISTENING TO</h2>
     <label for="name">Song or Artist</label>
     <input type="text" name="name" id="form-input" placeholder="Listening to..." />
-    <button id="submit-button">Submit</button>
+    <button id="submit-button">WHAT SHOULD I DRINK?</button>
   </form>
 
-  <div class="form-drink"></div>
+  <div class="form-drink">
+    <div id="form-drink-card">
+      <p id="form-drink-name"></p>
+      <img id="form-drink-image" src="" />
+      <p id="form-drink-instructions"></p>
+    </div>
+  </div>
 
   <div class="mood-dropdown">
-    <h3>Pick A Mood For A Surprise Drink!</h3>
-      <div id="dropdownOptions">
-        <a href="#">Happy</a>
-        <a href="#">Hype</a>
-        <a href="#">In My Feels</a>
-        <a href="#">Angsty</a>
+    <button onclick="moodFunction()" class = "dropdownButton"><h3>🔀 Hey bartender, I'm feeling...</h3></button>
+      <div id="dropdown" class="dropdown-content">
+        <a>🪩 Like A Dancing Queen</a>
+        <a>😵‍💫 Emotional Motion Sickness</a>
+        <a>💔 Marvin's Room</a>
+        <a>💅 Myself</a>
       </div>
     </div>
-  
+
   <script type="text/javascript" src="src/index.js"></script>
 </body>
 </html
