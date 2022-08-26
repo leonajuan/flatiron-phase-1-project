@@ -55,9 +55,6 @@ function displayDrinks() {
     let randomElement0 = shuffledArray.slice(0,5)
     randomElement0.forEach(randomElement => { //grab 5 drinks
 
-    // for(let i = 0; i < 5; i++){ //grab 5 drinks
-    //   let drinksArray = data.drinks // assigns a value to the data
-    //   let randomElement = drinksArray[Math.floor(Math.random() * drinksArray.length)] // grabs random drink
       let drinkName = document.createElement("h5") // creates an element for each drink's name
       featuredCocktails.append(featuredCocktailNav) //add individual cocktail elements to the cocktails menu
 
